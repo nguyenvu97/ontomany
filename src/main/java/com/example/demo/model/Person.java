@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import com.example.demo.model.EntityBt.Department;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -16,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @SuperBuilder
 @ToString
-public class Person extends Folder implements Serializable  {
+public class Person  implements Serializable  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +28,8 @@ public class Person extends Folder implements Serializable  {
     private String lastName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "departmentId",nullable = false)
-    private Department department;
+    @JoinColumn(name = "gameId",nullable = false)
+    private Game game;
 
     @Embedded
     private Address address;

@@ -21,6 +21,7 @@ public class PersonMapperImpl implements PersonMapper {
                     .infoPerson(infoPerson)
                     .firstName(personDto.getFirstName())
                     .lastName(personDto.getLastName())
+
                     .build();
 
     }
@@ -36,7 +37,8 @@ public class PersonMapperImpl implements PersonMapper {
                 .infoPerson(infoPerson)
                 .firstName(person.getFirstName())
                 .lastName(person.getLastName())
-
+                .GameName(person.getGame().gameName)
+                .age(person.getAge())
                 .build();
     }
 }

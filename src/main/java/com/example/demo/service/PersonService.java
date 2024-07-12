@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PersonService {
 
-    Person add(PersonDto person);
+    PersonDto add(Person person,long gameId);
 
     Person update (PersonDto personDto,long id);
 

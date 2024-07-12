@@ -8,7 +8,9 @@ import com.example.demo.dto.PersonDto;
 import com.example.demo.dto.SearchRequestDto;
 import com.example.demo.mapper.PersonMapper;
 import com.example.demo.model.Address;
+import com.example.demo.model.Game;
 import com.example.demo.model.Person;
+import com.example.demo.repository.GameRepository;
 import com.example.demo.repository.PersonRepository;
 import com.example.demo.service.PersonService;
 import jakarta.persistence.LockModeType;
@@ -34,13 +36,21 @@ import java.util.stream.Stream;
 public class PersonServiceImpl implements PersonService {
     public final PersonRepository personDao;
     public final PersonMapper personMapper;
+    public final GameRepository gameRepository;
 
 
 
     @Override
-    public Person add(PersonDto  person) {
-        Person person1 = personMapper.dtoEntity(person);
-        return personDao.save(person1);
+    public PersonDto add(Person  person, long gameId) {
+        Game game = gameRepository.findById(gameId).orElseThrow(null);
+
+        return personMapper.entityDto( personDao.save(Person
+                .builder()
+                .age(person.getAge())
+                .firstName(person.getFirstName())
+                .lastName(person.getLastName())
+                .game(game)
+                .build()));
     }
 
     @Override
@@ -72,7 +82,7 @@ public class PersonServiceImpl implements PersonService {
         }
         Page<Person> page = personDao.findAll(PersonSpecs.priceGreaterThan(personDto),
                 PageRequest.of(personDto.getPageNumber(),personDto.getPageSize(),
-                Sort.by("email").descending()));
+                Sort.by("id").descending()));
 
         return (PageDto) PageDto.builder()
                 .content(page.getContent()
@@ -83,8 +93,8 @@ public class PersonServiceImpl implements PersonService {
                 .numberOfElements(page.getNumberOfElements())
                 .totalElements(page.getTotalElements())
                 .totalPages(page.getTotalPages())
-//                .pageNumber(page.getNumber())
-//                .pageSize(page.getSize())
+                .pageNumber(page.getNumber())
+                .pageSize(page.getSize())
                 .build();
 
     }

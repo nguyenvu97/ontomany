@@ -16,5 +16,5 @@ public class PersonDto extends  PageDto{
     private Address address;
     private InfoPerson infoPerson;
     private int age;
-
+    private String GameName;
 }

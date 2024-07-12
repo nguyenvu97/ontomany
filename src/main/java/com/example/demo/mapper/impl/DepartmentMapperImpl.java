@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class DepartmentMapperImpl implements DepartmentMapper {
 
     @Override
-    public   DepartmentDto entityDto(Department department) {
+    public DepartmentDto entityDto(Department department) {
         DepartmentDto departmentDto = new DepartmentDto();
         BeanUtils.copyProperties(department,departmentDto);
         return departmentDto;

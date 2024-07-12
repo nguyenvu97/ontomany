@@ -18,8 +18,8 @@ public class PersonController {
     public final PersonService personService;
 
     @PostMapping
-    public ResponseEntity<?> add(@RequestBody PersonDto person){
-        return ResponseEntity.status(HttpStatus.CREATED).body(personService.add(person));
+    public ResponseEntity<?> add(@RequestBody Person person,@RequestParam long gameId){
+        return ResponseEntity.status(HttpStatus.CREATED).body(personService.add(person,gameId));
     }
     @PutMapping
     public ResponseEntity<?> add(@RequestParam long id , @RequestBody PersonDto person){

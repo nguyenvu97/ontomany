@@ -12,12 +12,13 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Builder
-@Table(name = "Groups1")
+@Table(name = "groups")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String groupName;
     @OneToMany(mappedBy = "group",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+
     public List<Company> companies;
 }

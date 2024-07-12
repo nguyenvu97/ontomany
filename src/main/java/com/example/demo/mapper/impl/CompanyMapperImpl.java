@@ -23,8 +23,8 @@ public class CompanyMapperImpl  implements CompanyMapper {
         CompanyDto companyDto = new CompanyDto();
         List<DepartmentDto> departmentList = new ArrayList<>();
         for (Department department : company.getDepartmentList()){
-            DepartmentDto department1 = departmentMapper.entityDto(department);
-            departmentList.add(department1);
+
+            departmentList.add(departmentMapper.entityDto(department));
         }
          companyDto.setDepartment(departmentList);
 

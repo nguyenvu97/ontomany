@@ -1,9 +1,11 @@
 package com.example.demo.mapper;
 
 import com.example.demo.dto.UserDto;
-import com.example.demo.model.EntityBt.User;
+import com.example.demo.model.EntityBt.Customer;
 
-public interface UserMapper {
-    UserDto entityDto(User user);
-    User dtoEntity(UserDto userDto);
+
+public  interface UserMapper {
+
+    UserDto entityDto(Customer user);
+    Customer dtoEntity(UserDto userDto);
 }

@@ -6,9 +6,10 @@ import com.example.demo.dto.GroupDto;
 import com.example.demo.dto.UserDto;
 import com.example.demo.mapper.GroupMapper;
 import com.example.demo.model.EntityBt.Company;
+import com.example.demo.model.EntityBt.Customer;
 import com.example.demo.model.EntityBt.Department;
 import com.example.demo.model.EntityBt.Group;
-import com.example.demo.model.EntityBt.User;
+import com.example.demo.projection.GroupDetails;
 import com.example.demo.repository.GroupRepository;
 import com.example.demo.service.CompanyService;
 import com.example.demo.service.DepartmentService;
@@ -47,14 +48,14 @@ public class GroupServiceImpl implements GroupService {
             for (DepartmentDto departmentDto : companyDto.getDepartment()) {
                 Department department = Department.builder()
                         .name(departmentDto.getName())
-                        .company(company)
+//                        .company(company)
                         .build();
 
-                List<User> users = new ArrayList<>();
+                List<Customer> users = new ArrayList<>();
                 for (UserDto userDto : departmentDto.getUsers()) {
-                    User user = User.builder()
-                            .firstname(userDto.getFirstname())
-                            .lastname(userDto.getLastname())
+                    Customer user = Customer.builder()
+                            .firstName(userDto.getFirstName())
+                            .lastName(userDto.getLastName())
                             .address(userDto.getAddress())
                             .userName(userDto.getUserName())
                             .updatedBy("admin")
@@ -64,7 +65,7 @@ public class GroupServiceImpl implements GroupService {
 
                     users.add(user);
                 }
-                department.setUsers(users);
+//                department.setUsers(users);
                 departments.add(department);
             }
             company.setDepartmentList(departments);
@@ -74,5 +75,16 @@ public class GroupServiceImpl implements GroupService {
 
         Group savedGroup = groupRepository.save(group);
         return groupMapper.entityDto(savedGroup);
+    }
+
+    @Override
+    public List<GroupDetails> fingbyId(long id) {
+
+        return groupRepository.findById(id);
+    }
+
+    @Override
+    public GroupDetails findByDetails(long id, long companyId, long departmentId) {
+        return groupRepository.findByDetails(id,companyId,departmentId);
     }
 }

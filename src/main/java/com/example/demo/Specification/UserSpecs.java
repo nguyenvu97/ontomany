@@ -1,7 +1,7 @@
 package com.example.demo.Specification;
 
-import com.example.demo.dto.UserDto;
-import com.example.demo.model.EntityBt.User;
+import com.example.demo.dto.SearchRequestDto;
+import com.example.demo.model.EntityBt.Customer;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserSpecs {
-    public static Specification<User> searchUser(UserDto userDto){
+    public static Specification<Customer> searchUser(SearchRequestDto searchRequestDto){
             List<Predicate> predicates = new ArrayList<>();
             return (root, query, builder) -> {
-                if (userDto.getUserName() != null && !userDto.getUserName().isEmpty()){
-                    predicates.add(builder.like(root.get("userName"), "%" + userDto.getUserName() + "%"));
+                if (searchRequestDto.getUserName() != null && !searchRequestDto.getUserName().isEmpty()){
+                    predicates.add(builder.like(root.get("userName"), "%" + searchRequestDto.getUserName()  + "%"));
                 }
-                if (userDto.getAddress() != null && !userDto.getAddress().isEmpty()){
-                    predicates.add(builder.equal(root.get("address"), userDto.getAddress()));
+                if (searchRequestDto.getAddress() != null && !searchRequestDto.getAddress().isEmpty()){
+                    predicates.add(builder.equal(root.get("address"), searchRequestDto.getAddress()));
                 }
 
                 // Check if predicates list is not empty before using builder.or()

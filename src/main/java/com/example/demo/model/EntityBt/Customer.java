@@ -11,22 +11,25 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Builder
-public class User {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String firstname;
+    @NonNull
+    private String firstName;
+    @NonNull
     private String userName;
-    private String lastname;
+    @NonNull
+    private String lastName;
+    @NonNull
     private String address;
     private String createdBy;
     private String updatedBy;
     private Date createdTime;
     private Date updatedTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "departmentId",nullable = false)
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "department_Id",nullable = false)
     private Department department;
 
 

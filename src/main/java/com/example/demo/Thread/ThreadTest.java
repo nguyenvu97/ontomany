@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Thread;
 
 import com.example.demo.model.Address;
 import com.example.demo.model.InfoPerson;
@@ -24,8 +24,8 @@ public class ThreadTest implements Callable<Person> {
                 .age(10)
                 .firstName("nguyenvu")
                 .lastName("thaidui")
-                .folderName("person")
-                .folderPath(FILE_PATH)
+//                .folderName("person")
+//                .folderPath(FILE_PATH)
                 .build();
 
 

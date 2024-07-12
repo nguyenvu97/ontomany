@@ -1,15 +1,17 @@
 package com.example.demo.dto;
 
+import com.example.demo.model.EntityBt.Customer;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
+@EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
-public class UserDto {
-    private long id;
-    private String firstname;
-    private String lastname;
-    private String address;
-    private String userName;
+public class UserDto  extends Customer {
+    public String groupName;
     private String departmentName;
     private String companyName;
-    private String groupName;
 }

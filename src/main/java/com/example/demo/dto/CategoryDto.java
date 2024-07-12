@@ -5,8 +5,8 @@ import lombok.Data;
 
 import java.util.List;
 
-@Data
 @Builder
+@Data
 public class CategoryDto {
     private Long id;
     private String name;
